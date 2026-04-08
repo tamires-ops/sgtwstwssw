@@ -1,1 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Isca e Companhia | Caça, Pesca e Camping</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9f2;
+      color: #2c3e2f;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, .navbar-brand, .btn, .card-title, .footer-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+
+    /* Cores personalizadas: verde natureza + tons terrosos */
+    :root {
+      --verde-mata: #2b5e2b;
+      --verde-claro: #4c8b3c;
+      --caqui: #8b7a5c;
+      --areia: #e9e3d5;
+      --destaque: #d98c2b;
+    }
+
+    .bg-verde-mata {
+      background-color: var(--verde-mata);
+    }
+
+    .bg-areia {
+      background-color: var(--areia);
+    }
+
+    .text-verde-mata {
+      color: var(--verde-mata);
+    }
+
+    .text-destaque {
+      color: var(--destaque);
+    }
+
+    .btn-destaque {
+      background-color: var(--destaque);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 40px;
+    }
+
+    .btn-destaque:hover {
+      background-color: #c07a22;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      color: white;
+    }
+
+    .btn-outline-verde {
+      border: 2px solid var(--verde-mata);
+      color: var(--verde-mata);
+      border-radius: 40px;
+      padding: 8px 24px;
+      font-weight: 500;
+    }
+
+    .btn-outline-verde:hover {
+      background-color: var(--verde-mata);
+      color: white;
+    }
+
+    .navbar {
+      background-color: white !important;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--verde-mata);
+      letter-spacing: -0.5px;
+    }
+
+    .navbar-brand i {
+      color: var(--destaque);
+      font-size: 1.9rem;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: #2c3e2f !important;
+      margin: 0 6px;
+    }
+
+    .nav-link:hover {
+      color: var(--destaque) !important;
+    }
+
+    .hero-section {
+      background: linear-gradient(107deg, #eef0e5 0%, #dde1d2 100%);
+      padding: 70px 0 60px;
+      border-bottom: 4px solid var(--destaque);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1f3b1a;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: #4a5b3e;
+    }
+
+    .card-hover {
+      transition: all 0.25s ease-in-out;
+      border: none;
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+    }
+
+    .icon-circle {
+      background-color: #eef3e8;
+      width: 70px;
+      height: 70px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 2rem;
+      color: var(--destaque);
+      margin-bottom: 1rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      height: 100%;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+      transition: all 0.2s;
+      border-left: 6px solid var(--destaque);
+    }
+
+    .footer {
+      background-color: #1e2a1c;
+      color: #dbdec9;
+      padding-top: 3rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .footer a {
+      color: #e2c28b;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #ffda9e;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      line-height: 60px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 99;
+      transition: 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #1ebc57;
+      transform: scale(1.05);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-section {
+        padding: 50px 0 40px;
+      }
+    }
+
+    .badge-cnpj {
+      background-color: rgba(43,94,43,0.1);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--verde-mata);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botão Flutuante WhatsApp -->
+<a href="https://wa.me/553432923601?text=Olá%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20produtos%20de%20caça%2C%20pesca%20e%20camping!" 
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-fish me-2"></i> Isca & Companhia
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+      </ul>
+      <a href="#contato" class="btn btn-destaque ms-lg-3 mt-3 mt-lg-0">Fale Conosco <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="inicio" class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="badge-cnpj mb-3 d-inline-block"><i class="fas fa-store me-1"></i> Desde 2009 | Tradição em Goiás</span>
+        <h1 class="hero-title">Sua aventura começa <span class="text-destaque">aqui</span></h1>
+        <p class="hero-sub mt-3 mb-4">Tudo para caça, pesca e camping com qualidade, segurança e os melhores preços. Mais de 15 anos equipando pescadores, caçadores e aventureiros.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#produtos" class="btn btn-destaque"><i class="fas fa-compass me-2"></i> Explorar coleções</a>
+          <a href="#contato" class="btn btn-outline-verde"><i class="fas fa-map-marker-alt me-2"></i> Visite a loja</a>
+        </div>
+        <div class="mt-4 d-flex gap-4 flex-wrap">
+          <div><i class="fas fa-check-circle text-destaque me-1"></i> <strong>Frete Rápido</strong></div>
+          <div><i class="fas fa-tag text-destaque me-1"></i> <strong>Preço justo</strong></div>
+          <div><i class="fas fa-star text-destaque me-1"></i> <strong>Garantia de qualidade</strong></div>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <img src="https://placehold.co/500x400/e9e3d5/5c6e3e?text=🎣+Isca+e+Companhia" alt="Loja de Pesca e Camping" class="img-fluid rounded-4 shadow-lg" style="max-height: 320px; width: auto; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categorias / Ícones Frases -->
+<section class="container py-5 my-4">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Especialistas no seu <span class="text-destaque">estilo outdoor</span></h2>
+    <p class="text-secondary w-75 mx-auto">Encontre equipamentos premium para viver a natureza com segurança e conforto.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card-hover card p-4 text-center h-100 rounded-4">
+        <div class="icon-circle mx-auto"><i class="fas fa-fish"></i></div>
+        <h4 class="fw-semibold">Pesca Profissional</h4>
+        <p>Varas, carretilhas, molinetes, iscas artificiais e naturais, além de acessórios premium.</p>
+        <span class="small text-destaque fw-semibold">+100 itens disponíveis</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-hover card p-4 text-center h-100 rounded-4">
+        <div class="icon-circle mx-auto"><i class="fas fa-tree"></i></div>
+        <h4 class="fw-semibold">Camping & Aventura</h4>
+        <p>Barracas, sacos de dormir, mochilas, fogareiros, lanternas e itens de sobrevivência.</p>
+        <span class="small text-destaque fw-semibold">Equipamentos leves e duráveis</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-hover card p-4 text-center h-100 rounded-4">
+        <div class="icon-circle mx-auto"><i class="fas fa-gun"></i></div>
+        <h4 class="fw-semibold">Artigos de Caça Legal</h4>
+        <p>Mochilas táticas, binóculos, coldres, roupas camufladas, acessórios regulamentados.</p>
+        <span class="small text-destaque fw-semibold">Sempre dentro da lei</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Frases motivacionais + Diferenciais -->
+<section class="bg-areia py-5">
+  <div class="container py-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <i class="fas fa-quote-left fa-3x text-destaque opacity-50 mb-3"></i>
+        <p class="fs-3 fst-italic fw-medium text-verde-mata">"O melhor equipamento é aquele que te conecta com a natureza, sem sustos e com muito prazer."</p>
+        <hr class="w-25 mx-auto my-4 border-destaque">
+        <div class="d-flex flex-wrap justify-content-center gap-4 mt-3">
+          <div><i class="fas fa-clock text-destaque me-2"></i> +15 anos de experiência</div>
+          <div><i class="fas fa-trophy text-destaque me-2"></i> Atendimento especializado</div>
+          <div><i class="fas fa-hand-holding-heart text-destaque me-2"></i> Compromisso com o cliente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Produtos em Destaque (Vitrine) -->
+<section id="produtos" class="container py-5 my-3">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Produtos <span class="text-destaque">Imperdíveis</span></h2>
+    <p class="text-secondary">Os mais vendidos da estação para você curtir seu hobby</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="card-hover card border-0 rounded-4 overflow-hidden h-100">
+        <img src="https://placehold.co/400x260/e9e3d5/5c6e3e?text=🎣+Kit+Pesca+Pro" class="card-img-top" alt="kit pesca">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title fw-bold">Kit Pesca Profissional</h5>
+            <i class="fas fa-star text-warning"></i>
+          </div>
+          <p class="card-text text-secondary">Vara de carbono + carretilha + linha multifilamento e iscas variadas.</p>
+          <div class="fw-bold text-verde-mata fs-5">R$ 289,90</div>
+          <button class="btn btn-sm btn-outline-verde mt-2 w-100 rounded-pill">Consultar disponibilidade</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card-hover card border-0 rounded-4 overflow-hidden h-100">
+        <img src="https://placehold.co/400x260/e9e3d5/5c6e3e?text=⛺+Barraca+4+Estações" class="card-img-top" alt="barraca camping">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Barraca 4 Estações</h5>
+          <p class="card-text text-secondary">Impermeável, compacta, capacidade para 3 pessoas, fácil montagem.</p>
+          <div class="fw-bold text-verde-mata fs-5">R$ 479,00</div>
+          <button class="btn btn-sm btn-outline-verde mt-2 w-100 rounded-pill">Quero saber mais</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card-hover card border-0 rounded-4 overflow-hidden h-100">
+        <img src="https://placehold.co/400x260/e9e3d5/5c6e3e?text=🔭+Binóculo+Caça" class="card-img-top" alt="binóculo">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Binóculo 10x42 HD</h5>
+          <p class="card-text text-secondary">Visão noturna, resistente à água, ideal para observação e caça ética.</p>
+          <div class="fw-bold text-verde-mata fs-5">R$ 349,00</div>
+          <button class="btn btn-sm btn-outline-verde mt-2 w-100 rounded-pill">Reservar agora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-5">
+    <a href="#" class="btn btn-destaque rounded-pill px-5"><i class="fas fa-eye me-2"></i>Ver catálogo completo</a>
+  </div>
+</section>
+
+<!-- Sobre + Informações da Empresa (Dados CNPJ e endereço) -->
+<section id="sobre" class="bg-white py-5 border-top border-bottom">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3"><i class="fas fa-building text-destaque me-2"></i> Isca e Companhia</h2>
+        <p class="lead">Comércio varejista especializado em artigos para caça, pesca e camping. Há mais de uma década atendendo com excelência pescadores e aventureiros no interior de Goiás e para todo o Brasil.</p>
+        <div class="info-card mt-4">
+          <div class="d-flex mb-3">
+            <i class="fas fa-barcode fa-fw fa-xl text-destaque me-3 mt-1"></i>
+            <div><strong>CNPJ:</strong> 10.884.486/0001-21<br><span class="small">10.884.486/0001-21</span></div>
+          </div>
+          <div class="d-flex mb-3">
+            <i class="fas fa-calendar-alt fa-fw text-destaque me-3 mt-1"></i>
+            <div><strong>Situação Cadastral:</strong> Ativa | Data: 09/06/2009</div>
+          </div>
+          <div class="d-flex mb-3">
+            <i class="fas fa-map-pin fa-fw text-destaque me-3 mt-1"></i>
+            <div><strong>Matriz / Loja Física:</strong><br>
+            Avenida Adelina Alves Vilela, 484 - Jardim Morumbi<br>Itumbiara - GO, CEP: 75524-680</div>
+          </div>
+          <div class="d-flex mb-2">
+            <i class="fas fa-phone-alt fa-fw text-destaque me-3 mt-1"></i>
+            <div><strong>Telefone & WhatsApp:</strong> (34) 3292-3601</div>
+          </div>
+          <div class="mt-3">
+            <i class="fas fa-envelope text-destaque me-2"></i> iscaecompanhia@contato.com.br (atendimento virtual)
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="bg-areia rounded-4 p-4 shadow-sm">
+          <h4 class="fw-bold mb-3"><i class="fas fa-store me-2"></i> Horário de Funcionamento</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-clock text-destaque me-2"></i> Segunda a Sexta: 08h às 18h</li>
+            <li class="mb-2"><i class="fas fa-clock text-destaque me-2"></i> Sábado: 08h às 14h</li>
+            <li><i class="fas fa-calendar-week text-destaque me-2"></i> Domingo: Fechado (exceto eventos outdoor)</li>
+          </ul>
+          <hr class="my-3">
+          <p class="mb-0"><i class="fas fa-hand-peace me-2"></i> Retirada na loja ou entrega para toda região do Vale do Paranaíba. Consulte frete para demais localidades.</p>
+          <div class="mt-3">
+            <i class="fab fa-instagram me-2 text-destaque"></i> <i class="fab fa-facebook me-2 text-destaque"></i> <span class="small">@iscaecompanhia</span>
+          </div>
+        </div>
+        <!-- Mapa simbólico (estático) -->
+        <div class="mt-4 rounded-4 overflow-hidden shadow-sm">
+          <iframe src="https://maps.google.com/maps?q=Avenida+Adelina+Alves+Vilela,+484,+Jardim+Morumbi,+Itumbiara+-+GO,+75524-680&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Depoimentos / Frases Clientes (Ícones e engajamento) -->
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+      <h3 class="fw-bold">O que nossos clientes dizem</h3>
+      <div class="row mt-4 g-4">
+        <div class="col-md-6">
+          <div class="p-4 bg-areia rounded-4 h-100">
+            <i class="fas fa-quote-left fa-2x text-destaque mb-2"></i>
+            <p class="fst-italic">"Loja completa, tudo que preciso para pescaria encontro aqui. Atendimento excepcional!"</p>
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+              <span class="ms-2 fw-semibold">— Carlos M., Pescador</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-4 bg-areia rounded-4 h-100">
+            <i class="fas fa-quote-left fa-2x text-destaque mb-2"></i>
+            <p class="fst-italic">"Equipamentos de camping de primeira, já fiz trilhas com a barraca que comprei. Recomendo Isca e Companhia."</p>
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+              <span class="ms-2 fw-semibold">— Fernanda S., Aventureira</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contato / Formulário rápido + informações finais -->
+<section id="contato" class="bg-verde-mata text-white py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-md-5">
+        <h3 class="fw-bold"><i class="fas fa-paper-plane me-2"></i> Fale com a gente</h3>
+        <p class="mt-3 opacity-75">Tire dúvidas, peça orçamentos ou reserve produtos diretamente com nossa equipe.</p>
+        <div class="mt-4">
+          <p><i class="fas fa-phone-alt me-3"></i> (34) 3292-3601</p>
+          <p><i class="fab fa-whatsapp me-3"></i> (34) 3292-3601 (atendimento também via WhatsApp)</p>
+          <p><i class="fas fa-envelope me-3"></i> contato@iscaecompanhia.com.br</p>
+          <p><i class="fas fa-clock me-3"></i> Seg-Sex: 8h-18h | Sáb: 8h-14h</p>
+        </div>
+        <div class="mt-4">
+          <a href="#" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-white me-3 fs-4"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="bg-white p-4 rounded-4 text-dark">
+          <h4 class="fw-bold text-verde-mata">Envie uma mensagem rápida</h4>
+          <form action="#" method="post">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Seu nome" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="E-mail ou telefone" required>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" rows="3" placeholder="Diga o que procura (pesca, camping, caça)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-destaque w-100"><i class="fas fa-paper-plane me-2"></i> Enviar mensagem</button>
+          </form>
+          <p class="small text-secondary mt-3">Retornaremos em até 24h úteis. Ou ligue direto!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer completo -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h4 class="fw-bold"><i class="fas fa-fish me-1"></i> Isca e Companhia</h4>
+        <p class="small">Razão Social: Isca e Companhia Comercio LTDA | CNPJ 10.884.486/0001-21<br>
+        Situação Cadastral: ATIVA desde 09/06/2009. Tradição em artigos outdoor.</p>
+        <p class="small mb-0">© 2025 Isca e Companhia - Todos os direitos reservados.</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Links Úteis</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre a empresa</a></li>
+          <li><a href="#contato">Fale Conosco</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h5>Endereço</h5>
+        <address class="small">
+          Av. Adelina Alves Vilela, 484<br>
+          Jardim Morumbi, Itumbiara - GO<br>
+          CEP: 75524-680<br>
+          <i class="fas fa-phone-alt me-1"></i> (34) 3292-3601
+        </address>
+      </div>
+    </div>
+    <hr class="border-secondary">
+    <div class="text-center small">
+      Isca e Companhia - Sua melhor escolha para pesca, caça legal e camping no Centro-Oeste.
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- script para navegação suave (opcional) -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
